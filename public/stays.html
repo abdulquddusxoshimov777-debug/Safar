@@ -46,39 +46,39 @@
   <div class="container">
     <div class="section-head" style="margin-bottom:20px;">
       <div>
-        <span class="eyebrow" id="stayCountLabel">Homes along the Silk Road</span>
-        <h2>Stays in Uzbekistan</h2>
+        <span class="eyebrow" id="stayCountLabel" data-i18n="stays_eyebrow">Homes along the Silk Road</span>
+        <h2 data-i18n="stays_h2">Stays in Uzbekistan</h2>
       </div>
     </div>
 
     <!-- VILOYAT / CITY FILTERS -->
-    <div class="filter-section-title">📍 Viloyat / Shahar bo'yicha saralash:</div>
+    <div class="filter-section-title" data-i18n="filter_region_title">📍 Viloyat / Shahar bo'yicha saralash:</div>
     <div class="filters" id="cityFilterRow" style="margin-bottom:12px;">
-      <button type="button" class="pill active" data-city="All">🌐 Barcha viloyatlar</button>
-      <button type="button" class="pill" data-city="Tashkent">Toshkent</button>
-      <button type="button" class="pill" data-city="Andijan">Andijon</button>
-      <button type="button" class="pill" data-city="Bukhara">Buxoro</button>
-      <button type="button" class="pill" data-city="Jizzakh">Jizzax</button>
-      <button type="button" class="pill" data-city="Kashkadarya">Qashqadaryo</button>
-      <button type="button" class="pill" data-city="Navoiy">Navoiy</button>
-      <button type="button" class="pill" data-city="Namangan">Namangan</button>
-      <button type="button" class="pill" data-city="Samarkand">Samarqand</button>
-      <button type="button" class="pill" data-city="Surkhandarya">Surxondaryo</button>
-      <button type="button" class="pill" data-city="Sirdarya">Sirdaryo</button>
-      <button type="button" class="pill" data-city="Fergana">Farg`ona</button>
-      <button type="button" class="pill" data-city="Khorazm">Xorazm</button>
+      <button type="button" class="pill active" data-city="All"><span data-i18n="filter_all_regions">🌐 Barcha viloyatlar</span></button>
+      <button type="button" class="pill" data-city="Tashkent"><span data-i18n="city_tashkent">Toshkent</span></button>
+      <button type="button" class="pill" data-city="Andijan"><span data-i18n="city_andijan">Andijon</span></button>
+      <button type="button" class="pill" data-city="Bukhara"><span data-i18n="city_bukhara">Buxoro</span></button>
+      <button type="button" class="pill" data-city="Jizzakh"><span data-i18n="city_jizzakh">Jizzax</span></button>
+      <button type="button" class="pill" data-city="Kashkadarya"><span data-i18n="city_kashkadarya">Qashqadaryo</span></button>
+      <button type="button" class="pill" data-city="Navoiy"><span data-i18n="city_navoiy">Navoiy</span></button>
+      <button type="button" class="pill" data-city="Namangan"><span data-i18n="city_namangan">Namangan</span></button>
+      <button type="button" class="pill" data-city="Samarkand"><span data-i18n="city_samarkand">Samarqand</span></button>
+      <button type="button" class="pill" data-city="Surkhandarya"><span data-i18n="city_surkhandarya">Surxondaryo</span></button>
+      <button type="button" class="pill" data-city="Sirdarya"><span data-i18n="city_sirdarya">Sirdaryo</span></button>
+      <button type="button" class="pill" data-city="Fergana"><span data-i18n="city_fergana">Farg`ona</span></button>
+      <button type="button" class="pill" data-city="Khorazm"><span data-i18n="city_khorazm">Xorazm</span></button>
     </div>
 
     <!-- TYPE FILTERS -->
-    <div class="filter-section-title">🏡 Uy turi bo'yicha saralash:</div>
+    <div class="filter-section-title" data-i18n="filter_stay_type_title">🏡 Uy turi bo'yicha saralash:</div>
     <div class="filters" id="filterRow">
       <button type="button" class="pill active" data-tag="All">✨ <span data-i18n="filter_all">Barcha turlar</span></button>
-      <button type="button" class="pill" data-tag="Official Hotel"> <span data-i18n="filter_courtyard">Hotel </span></button>
-      <button type="button" class="pill" data-tag="Home Hotel"><span data-i18n="filter_city">UY Hotel</span></button>
-      <button type="button" class="pill" data-tag="Night Hotel"> <span data-i18n="filter_mountain">Hostel</span></button>
-      <button type="button" class="pill" data-tag="Mountain view"> <span data-i18n="filter_historic">Dacha</span></button>
-      <button type="button" class="pill" data-tag="Yurt stay"><span data-i18n="filter_yurt">Chodir</span></button>
-      <button type="button" class="pill" data-tag="Historical"> <span data-i18n="filter_trad">Tarixiy</span></button>
+      <button type="button" class="pill" data-tag="Official Hotel"><span data-i18n="tag_hotel">Mehmonxona</span></button>
+      <button type="button" class="pill" data-tag="Home Hotel"><span data-i18n="tag_home_hotel">Uy Hotel</span></button>
+      <button type="button" class="pill" data-tag="Night Hotel"><span data-i18n="tag_hostel">Hostel</span></button>
+      <button type="button" class="pill" data-tag="Mountain view"><span data-i18n="tag_dacha">Dacha</span></button>
+      <button type="button" class="pill" data-tag="Yurt stay"><span data-i18n="tag_yurt">Chodir</span></button>
+      <button type="button" class="pill" data-tag="Historical"><span data-i18n="tag_historic">Tarixiy</span></button>
     </div>
 
     <div class="listing-layout">
@@ -178,19 +178,27 @@ function getFilteredStays() {
 function renderList() {
   const list = document.getElementById("stayList");
   const filtered = getFilteredStays();
-  document.getElementById("stayCountLabel").textContent = `${filtered.length} homes along the Silk Road`;
+  const countWord = window.Saffar_t ? window.Saffar_t("stays_count_label") : "homes along the Silk Road";
+  const countEl = document.getElementById("stayCountLabel");
+  if (countEl) countEl.textContent = `${filtered.length} ${countWord}`;
   
   if (!filtered.length) {
     const emptyMsg = window.Saffar_t ? window.Saffar_t("msg_empty_stays") : "No stays found matching your criteria.";
+    const emptySub = window.Saffar_t ? window.Saffar_t("stays_empty_sub") : "Try searching for a different city or clearing your filters.";
+    const clearText = window.Saffar_t ? window.Saffar_t("btn_clear_filters") : "Clear filters";
     list.innerHTML = `
       <div class="empty-stays-card">
         <div class="empty-icon" aria-hidden="true">🏛</div>
         <h3>${escapeHtml(emptyMsg)}</h3>
-        <p>Try searching for a different city or clearing your filters.</p>
-        <button type="button" class="btn btn-ghost" onclick="resetFilters()" style="margin-top:12px;">Clear filters</button>
+        <p>${escapeHtml(emptySub)}</p>
+        <button type="button" class="btn btn-ghost" onclick="resetFilters()" style="margin-top:12px;">${escapeHtml(clearText)}</button>
       </div>`;
     return;
   }
+
+  const perGuestText = window.Saffar_t ? window.Saffar_t("per_guest") : "/ kishi boshiga";
+  const btnDetailsText = window.Saffar_t ? window.Saffar_t("btn_details") : "🔍 Batafsil";
+  const btnMapsText = window.Saffar_t ? window.Saffar_t("btn_maps") : "📍 Maps xarita";
 
   list.innerHTML = filtered.map((s) => {
     const gMapUrl = s.googleMapsUrl || `https://maps.google.com/?q=${s.coordinates ? s.coordinates[0] : 41.3113},${s.coordinates ? s.coordinates[1] : 69.2797}`;
@@ -212,16 +220,20 @@ function renderList() {
         </div>
         
         <div class="stay-price-row" style="margin-top:14px; display:flex; gap:8px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
-          <div class="stay-price">${s.price} <span>/ kishi boshiga</span></div>
+          <div class="stay-price">${s.price} <span>${escapeHtml(perGuestText)}</span></div>
         </div>
         <div class="card-actions-row" style="margin-top:12px;">
-          <a class="btn-detail" href="detail.html?type=stay&id=${s.id}" onclick="event.stopPropagation()">🔍 Batafsil</a>
-          <a class="btn-book" href="${escapeHtml(gMapUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">📍 Maps xarita</a>
+          <a class="btn-detail" href="detail.html?type=stay&id=${s.id}" onclick="event.stopPropagation()">${escapeHtml(btnDetailsText)}</a>
+          <a class="btn-book" href="${escapeHtml(gMapUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${escapeHtml(btnMapsText)}</a>
         </div>
       </div>
     </div>`;
   }).join("");
 }
+
+window.addEventListener("Saffar_lang_changed", () => {
+  renderList();
+});
 
 window.toggleFav = function(e, type, id) {
   e.stopPropagation();

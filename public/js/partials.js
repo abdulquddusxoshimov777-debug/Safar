@@ -84,9 +84,9 @@
     const session = getSession();
 
     const navLink = (href, i18nKey, label, icon) =>
-      `<a href="${href}" class="nav-tab ${page === href ? "active" : ""}" data-i18n="${i18nKey}">
+      `<a href="${href}" class="nav-tab ${page === href ? "active" : ""}">
         ${icon}
-        <span>${label}</span>
+        <span data-i18n="${i18nKey}">${label}</span>
       </a>`;
 
     // Right-side controls: logged in vs guest
@@ -149,7 +149,7 @@
 
           <div class="nav-actions">
             <a href="#" id="openAddListingBtn" class="add-nav-btn desktop-only-actions" title="Yangi joy qo'shish" aria-label="Add new listing">
-              + Add
+              <span data-i18n="nav_add">+ Add</span>
             </a>
             <a href="saved.html" class="liked-nav-btn desktop-only-actions" title="Sevimlilar" aria-label="View saved items">
               ❤️
@@ -181,17 +181,17 @@
           <button type="button" class="mobile-drawer-close" id="closeMobileDrawerBtn" aria-label="Yopish">✕</button>
         </div>
         <div class="mobile-drawer-links">
-          <a href="index.html" class="${page === 'index.html' ? 'active' : ''}">🏠 Asosiy (Home)</a>
-          <a href="places.html" class="${page === 'places.html' ? 'active' : ''}">🏛 Diqqatga sazovor joylar (Places)</a>
-          <a href="stays.html" class="${page === 'stays.html' ? 'active' : ''}">🏨 Uylar va Mehmonxonalar (Homes)</a>
-          <a href="foods.html" class="${page === 'foods.html' ? 'active' : ''}">🍲 Milliy taomlar (Foods)</a>
-          <a href="crafts.html" class="${page === 'crafts.html' ? 'active' : ''}">🏺 Hunarmandchilik (Crafts)</a>
-          <a href="saved.html" class="${page === 'saved.html' ? 'active' : ''}">❤️ Sevimlilar ro'yxati (Saved)</a>
-          <a href="#" onclick="const b=document.getElementById('openAddListingBtn');if(b)b.click();closeMobileMenu();return false;" style="background:var(--turquoise-deep); color:#fff; font-weight:700;">➕ Yangi e'lon joylash</a>
+          <a href="index.html" class="${page === 'index.html' ? 'active' : ''}">🏠 <span data-i18n="drawer_home">Asosiy (Home)</span></a>
+          <a href="places.html" class="${page === 'places.html' ? 'active' : ''}">🏛 <span data-i18n="drawer_places">Diqqatga sazovor joylar (Places)</span></a>
+          <a href="stays.html" class="${page === 'stays.html' ? 'active' : ''}">🏨 <span data-i18n="drawer_homes">Uylar va Mehmonxonalar (Homes)</span></a>
+          <a href="foods.html" class="${page === 'foods.html' ? 'active' : ''}">🍲 <span data-i18n="drawer_foods">Milliy taomlar (Foods)</span></a>
+          <a href="crafts.html" class="${page === 'crafts.html' ? 'active' : ''}">🏺 <span data-i18n="drawer_crafts">Hunarmandchilik (Crafts)</span></a>
+          <a href="saved.html" class="${page === 'saved.html' ? 'active' : ''}">❤️ <span data-i18n="drawer_saved">Sevimlilar ro'yxati (Saved)</span></a>
+          <a href="#" onclick="const b=document.getElementById('openAddListingBtn');if(b)b.click();closeMobileMenu();return false;" style="background:var(--turquoise-deep); color:#fff; font-weight:700;">➕ <span data-i18n="drawer_add">Yangi e'lon joylash</span></a>
         </div>
-                <!-- Mobile Drawer Language Switcher -->
+        <!-- Mobile Drawer Language Switcher -->
         <div style="padding:14px 18px; border-top:1px solid rgba(255,255,255,0.12); margin-top:8px;">
-          <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:8px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;">🌐 Til / Language</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:8px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;" data-i18n="drawer_lang">🌐 Til / Language</div>
           <div style="display:flex; gap:8px;">
             <button type="button" class="lang-option" data-lang="uz" style="flex:1; padding:7px 4px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:${currLangCode === 'uz' ? 'var(--clay)' : 'rgba(255,255,255,0.08)'}; color:#fff; font-size:12px; font-weight:700; cursor:pointer;">🇺🇿 UZ</button>
             <button type="button" class="lang-option" data-lang="ru" style="flex:1; padding:7px 4px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:${currLangCode === 'ru' ? 'var(--clay)' : 'rgba(255,255,255,0.08)'}; color:#fff; font-size:12px; font-weight:700; cursor:pointer;">🇷🇺 RU</button>
@@ -207,10 +207,10 @@
                 <div style="font-size:12px; opacity:0.7;">${escapeHtml(session.user.email)}</div>
               </div>
             </div>
-            <a href="account.html" class="btn btn-primary" style="text-align:center; padding:10px; font-size:14px; text-decoration:none;">👤 Profil kabineti</a>
+            <a href="account.html" class="btn btn-primary" style="text-align:center; padding:10px; font-size:14px; text-decoration:none;" data-i18n="drawer_profile">👤 Profil kabineti</a>
           ` : `
-            <a href="login.html" class="btn btn-primary" style="text-align:center; padding:10px; font-size:14px; text-decoration:none;">Kirish (Log in)</a>
-            <a href="signup.html" class="btn btn-ghost" style="text-align:center; padding:10px; font-size:14px; text-decoration:none; color:#fff; border-color:rgba(255,255,255,0.3);">Ro'yxatdan o'tish (Sign up)</a>
+            <a href="login.html" class="btn btn-primary" style="text-align:center; padding:10px; font-size:14px; text-decoration:none;" data-i18n="nav_login">Kirish (Log in)</a>
+            <a href="signup.html" class="btn btn-ghost" style="text-align:center; padding:10px; font-size:14px; text-decoration:none; color:#fff; border-color:rgba(255,255,255,0.3);" data-i18n="nav_signup">Ro'yxatdan o'tish (Sign up)</a>
           `}
         </div>
       </aside>
@@ -219,30 +219,34 @@
       <nav class="mobile-bottom-nav" aria-label="Pastki mobil navigatsiya">
         <a href="index.html" class="bottom-nav-item ${page === 'index.html' ? 'active' : ''}">
           <span class="b-icon">🏠</span>
-          <span class="b-label">Asosiy</span>
+          <span class="b-label" data-i18n="nav_home">Asosiy</span>
         </a>
         <a href="places.html" class="bottom-nav-item ${page === 'places.html' ? 'active' : ''}">
           <span class="b-icon">🏛</span>
-          <span class="b-label">Joylar</span>
+          <span class="b-label" data-i18n="nav_places">Joylar</span>
         </a>
         <a href="stays.html" class="bottom-nav-item ${page === 'stays.html' ? 'active' : ''}">
           <span class="b-icon">🏨</span>
-          <span class="b-label">Uylar</span>
+          <span class="b-label" data-i18n="nav_homes">Uylar</span>
         </a>
         <a href="foods.html" class="bottom-nav-item ${page === 'foods.html' ? 'active' : ''}">
           <span class="b-icon">🍲</span>
-          <span class="b-label">Taomlar</span>
+          <span class="b-label" data-i18n="nav_foods">Taomlar</span>
         </a>
         <a href="crafts.html" class="bottom-nav-item ${page === 'crafts.html' ? 'active' : ''}">
           <span class="b-icon">🏺</span>
-          <span class="b-label">Buyumlar</span>
+          <span class="b-label" data-i18n="nav_crafts">Buyumlar</span>
         </a>
         <a href="${session ? 'account.html' : 'login.html'}" class="bottom-nav-item ${(page === 'account.html' || page === 'login.html') ? 'active' : ''}">
           <span class="b-icon">${session ? '👤' : '🔑'}</span>
-          <span class="b-label">${session ? 'Kabinet' : 'Kirish'}</span>
+          <span class="b-label" data-i18n="${session ? 'nav_cabinet' : 'nav_login'}">${session ? 'Kabinet' : 'Kirish'}</span>
         </a>
       </nav>
     `;
+
+    if (window.applyI18n) {
+      window.applyI18n();
+    }
 
     // Mobile drawer event listeners
     const openBtn = document.getElementById("openMobileMenuBtn");
@@ -310,44 +314,48 @@
                 </span>
                 Saffar
               </div>
-              <p style="max-width:260px;font-size:14px;color:rgba(251,247,238,0.85);">Unique places to stay, local foods and traditional crafts across Uzbekistan.</p>
+              <p style="max-width:260px;font-size:14px;color:rgba(251,247,238,0.85);" data-i18n="footer_desc">Unique places to stay, local foods and traditional crafts across Uzbekistan.</p>
             </div>
             <div>
-              <h4>Explore</h4>
+              <h4 data-i18n="footer_col_explore">Explore</h4>
               <ul>
-                <li><a href="places.html">Popular Places</a></li>
-                <li><a href="stays.html">Homes &amp; Stays</a></li>
-                <li><a href="foods.html">Uzbek Foods</a></li>
-                <li><a href="crafts.html">Traditional Crafts</a></li>
-                <li><a href="services.html">Services &amp; Products</a></li>
-                <li><a href="saved.html">Saved Items</a></li>
+                <li><a href="places.html" data-i18n="footer_places">Popular Places</a></li>
+                <li><a href="stays.html" data-i18n="footer_stays">Homes &amp; Stays</a></li>
+                <li><a href="foods.html" data-i18n="footer_foods">Uzbek Foods</a></li>
+                <li><a href="crafts.html" data-i18n="footer_crafts">Traditional Crafts</a></li>
+                <li><a href="services.html" data-i18n="footer_services">Services &amp; Products</a></li>
+                <li><a href="saved.html" data-i18n="footer_saved">Saved Items</a></li>
               </ul>
             </div>
             <div>
-              <h4>Company</h4>
+              <h4 data-i18n="footer_col_company">Company</h4>
               <ul>
-                <li><a href="about.html">About Saffar</a></li>
-                <li><a href="services.html">Our Services</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="contact.html">FAQs &amp; Help</a></li>
+                <li><a href="about.html" data-i18n="footer_about">About Saffar</a></li>
+                <li><a href="services.html" data-i18n="footer_our_services">Our Services</a></li>
+                <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
+                <li><a href="contact.html" data-i18n="footer_help">FAQs &amp; Help</a></li>
               </ul>
             </div>
             <div>
-              <h4>Hosting</h4>
+              <h4 data-i18n="footer_col_hosting">Hosting</h4>
               <ul>
-                <li><a href="#" onclick="const b=document.getElementById('openAddListingBtn');if(b)b.click();return false;">Host your home</a></li>
-                <li><a href="#" onclick="const b=document.getElementById('openAddListingBtn');if(b)b.click();return false;">Host food experience</a></li>
-                <li><a href="about.html">Responsible hosting</a></li>
-                <li><a href="contact.html">Support center</a></li>
+                <li><a href="#" onclick="const b=document.getElementById('openAddListingBtn');if(b)b.click();return false;" data-i18n="footer_host_home">Host your home</a></li>
+                <li><a href="#" onclick="const b=document.getElementById('openAddListingBtn');if(b)b.click();return false;" data-i18n="footer_host_food">Host food experience</a></li>
+                <li><a href="about.html" data-i18n="footer_host_resp">Responsible hosting</a></li>
+                <li><a href="contact.html" data-i18n="footer_support">Support center</a></li>
               </ul>
             </div>
           </div>
           <div class="footer-bottom">
-            <span>&copy; 2026 Saffar. Explore Uzbekistan.</span>
-            <span class="legal"><a href="about.html">Privacy</a><a href="about.html">Terms</a><a href="services.html">Services</a></span>
+            <span data-i18n="footer_copy">&copy; 2026 Saffar. Explore Uzbekistan.</span>
+            <span class="legal"><a href="about.html" data-i18n="footer_privacy">Privacy</a><a href="about.html" data-i18n="footer_terms">Terms</a><a href="services.html" data-i18n="footer_services">Services</a></span>
           </div>
         </div>
       </footer>`;
+
+    if (window.applyI18n) {
+      window.applyI18n();
+    }
   }
 
   function compressImageFile(file) {

@@ -247,7 +247,8 @@ async function loadDetail() {
     const item = data.stay || data.food || data.place || data.craft;
 
     if (!item) {
-      container.innerHTML = `<h2>Ma'lumot topilmadi</h2><a href="index.html" class="btn btn-primary">Bosh sahifaga qaytish</a>`;
+      container.innerHTML = `<h2 data-i18n="detail_not_found">Ma'lumot topilmadi</h2><a href="index.html" class="btn btn-primary" data-i18n="detail_back_home">Bosh sahifaga qaytish</a>`;
+      if (window.applyI18n) window.applyI18n();
       return;
     }
 
@@ -348,9 +349,12 @@ async function loadDetail() {
       (item.userEmail && (item.userEmail || "").toLowerCase() === (session.user.email || "").toLowerCase())
     );
 
+    const t = window.Saffar_t || ((k) => k);
+    const reviewsCountLabel = t("detail_reviews_count");
+
     container.innerHTML = `
       <div style="margin-bottom:20px;">
-        <a href="javascript:history.back()" style="text-decoration:none; font-weight:600; color:var(--clay);">← Orqaga qaytish</a>
+        <a href="javascript:history.back()" style="text-decoration:none; font-weight:600; color:var(--clay);" data-i18n="detail_back">← Orqaga qaytish</a>
       </div>
 
       ${sliderHtml}
@@ -362,17 +366,17 @@ async function loadDetail() {
           
           <div style="display:flex; gap:16px; align-items:center; margin-bottom:24px; flex-wrap:wrap;">
             <span style="font-weight:700; color:var(--gold); font-size:18px;">★ ${rating}</span>
-            <span style="color:rgba(0,0,0,0.6); font-weight:600;">(${reviewsCount} ta sharh)</span>
+            <span style="color:rgba(0,0,0,0.6); font-weight:600;">(${reviewsCount} ${escapeHtml(reviewsCountLabel)})</span>
             <span style="color:rgba(0,0,0,0.6)">📍 ${escapeHtml(address)}</span>
           </div>
 
-          <h3 style="margin-bottom:10px; font-family:var(--font-display);">Tavsif va ma'lumotlar</h3>
+          <h3 style="margin-bottom:10px; font-family:var(--font-display);" data-i18n="detail_desc_title">Tavsif va ma'lumotlar</h3>
           <p style="font-size:16px; line-height:1.7; color:rgba(28,26,23,0.85); margin-bottom:28px;">
             ${escapeHtml(desc)}
           </p>
 
-          <!-- QULAYLIKLAR VA IMKONYATLAR (Image 3 match) -->
-          <h3 style="margin-bottom:12px; font-family:var(--font-display); font-size:22px;">Qulayliklar va Imkoniyatlar</h3>
+          <!-- QULAYLIKLAR VA IMKONYATLAR -->
+          <h3 style="margin-bottom:12px; font-family:var(--font-display); font-size:22px;" data-i18n="detail_amenities_title">Qulayliklar va Imkoniyatlar</h3>
           <div class="amenities-list" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px;">
             ${amenities.map(a => `
               <span class="amenity-chip" style="background:#fff; border:1px solid var(--sand-dark); padding:8px 18px; border-radius:24px; font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:6px; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
@@ -382,16 +386,16 @@ async function loadDetail() {
           </div>
 
           <!-- APP INTERACTIVE MAP -->
-          <h3 style="margin-bottom:12px; font-family:var(--font-display); font-size:22px;">📍 Joylashuv xaritasi</h3>
+          <h3 style="margin-bottom:12px; font-family:var(--font-display); font-size:22px;" data-i18n="detail_map_title">📍 Joylashuv xaritasi</h3>
           <div id="detailMapMount" style="width:100%; height:320px; border-radius:16px; border:1px solid var(--sand-dark); margin-bottom:32px; overflow:hidden;"></div>
 
           <div class="reviews-box">
-            <h3 style="margin-bottom:16px;">Ushbu joy bo'yicha sharh qoldirish</h3>
+            <h3 style="margin-bottom:16px;" data-i18n="detail_leave_review_title">Ushbu joy bo'yicha sharh qoldirish</h3>
             
             <div class="add-review-form">
               <form id="itemReviewForm">
                 <div style="margin-bottom:14px;">
-                  <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(28,26,23,0.6); margin-bottom: 6px;">BAHO</div>
+                  <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(28,26,23,0.6); margin-bottom: 6px;" data-i18n="detail_rating_label">BAHO</div>
                   <div class="star-picker" id="detailStarPicker">
                     <span class="star active" data-v="1" role="button" aria-label="1 star">★</span>
                     <span class="star active" data-v="2" role="button" aria-label="2 stars">★</span>
@@ -402,47 +406,47 @@ async function loadDetail() {
                   <input type="hidden" id="itemRating" value="5">
                 </div>
                 <div style="margin-bottom:12px;">
-                  <textarea id="itemReviewText" rows="3" placeholder="Ushbu mehmoxona/joy haqida o'z tajribangizni yozing..." style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--sand-dark); font-family:inherit;" required></textarea>
+                  <textarea id="itemReviewText" rows="3" data-i18n-placeholder="detail_review_ph" placeholder="${escapeHtml(t('detail_review_ph'))}" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--sand-dark); font-family:inherit;" required></textarea>
                 </div>
                 <div id="reviewAlert" style="color:var(--clay); font-size:13px; margin-bottom:8px; display:none;"></div>
-                <button type="submit" class="btn btn-primary" style="font-size:14px; padding:10px 20px;">Sharhni joylash</button>
+                <button type="submit" class="btn btn-primary" style="font-size:14px; padding:10px 20px;" data-i18n="detail_submit_review">Sharhni joylash</button>
               </form>
             </div>
 
-            <h4 style="margin-bottom:16px;">Mijozlar sharhlari (Otzivlar)</h4>
+            <h4 style="margin-bottom:16px;" data-i18n="detail_reviews_header">Mijozlar sharhlari (Fikr-mulohazalar)</h4>
             <div id="itemReviewsContainer">
-              ${reviewsHtml || '<p style="color:rgba(0,0,0,0.5)">Hozircha sharhlar yo\'q. Birinchi bo\'lib sharh qoldiring!</p>'}
+              ${reviewsHtml || `<p style="color:rgba(0,0,0,0.5)" data-i18n="detail_no_reviews">${escapeHtml(t('detail_no_reviews'))}</p>`}
             </div>
           </div>
         </div>
 
         <div>
           <div class="host-card">
-            <h3>Bog'lanish va Bron qilish</h3>
+            <h3 data-i18n="detail_contact_title">Bog'lanish va Bron qilish</h3>
             <p style="font-size:14.5px; color:rgba(28,26,23,0.8);">
-              <strong>Egasi / Mas'ul:</strong> <a href="profile.html?id=${encodeURIComponent(item.ownerId || item.ownerEmail || ownerName)}" style="color:var(--indigo); font-weight:700; text-decoration:none;" title="Egasi profilini ko'rish">${escapeHtml(ownerName)} ↗</a>
+              <strong data-i18n="detail_owner_label">Egasi / Mas'ul:</strong> <a href="profile.html?id=${encodeURIComponent(item.ownerId || item.ownerEmail || ownerName)}" style="color:var(--indigo); font-weight:700; text-decoration:none;" title="Egasi profilini ko'rish">${escapeHtml(ownerName)} ↗</a>
             </p>
             
             <div>
-              <div style="font-size:12px; text-transform:uppercase; font-weight:700; color:rgba(0,0,0,0.5); margin-bottom:6px;">Telefon raqami:</div>
+              <div style="font-size:12px; text-transform:uppercase; font-weight:700; color:rgba(0,0,0,0.5); margin-bottom:6px;" data-i18n="detail_phone_label">Telefon raqami:</div>
               <a href="tel:${escapeHtml(phone)}" class="phone-badge">
                 📞 ${escapeHtml(phone)}
               </a>
             </div>
 
-            ${item.price ? `<div style="font-size:22px; font-weight:800; margin-top:8px;">${escapeHtml(String(item.price))} <span style="font-size:14px; font-weight:400; color:rgba(0,0,0,0.6);">/ bahosi</span></div>` : ""}
+            ${item.price ? `<div style="font-size:22px; font-weight:800; margin-top:8px;">${escapeHtml(String(item.price))} <span style="font-size:14px; font-weight:400; color:rgba(0,0,0,0.6);" data-i18n="detail_price_suffix">/ bahosi</span></div>` : ""}
 
-            <a href="${escapeHtml(gMapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="text-align:center; margin-top:8px;">
+            <a href="${escapeHtml(gMapsUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="text-align:center; margin-top:8px;" data-i18n="detail_open_maps">
               📍 Google Maps / Yandex Maps da ochish
             </a>
 
             ${isListingOwner ? `
               <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
                 <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; border-radius:10px; font-weight:700;" onclick="openEditListingModal('${itemType}s', ${item.id})">
-                  ✏️ ${isAdmin ? "Admin: E'lonni tahrirlash" : "E'lonni tahrirlash"}
+                  ✏️ ${isAdmin ? escapeHtml(t("detail_admin_edit_btn")) : escapeHtml(t("detail_edit_btn"))}
                 </button>
                 <button type="button" class="btn-delete-listing" style="width:100%; justify-content:center; background:rgba(193,101,47,0.12); color:var(--clay); border:none; padding:10px; border-radius:10px; font-weight:700; cursor:pointer;" onclick="deleteListing('${itemType}s', ${item.id})">
-                  🗑 ${isAdmin ? "Admin sifatida e'lonni o'chirish" : "Ushbu e'lonni o'chirish"}
+                  🗑 ${isAdmin ? escapeHtml(t("detail_admin_delete_btn")) : escapeHtml(t("detail_delete_btn"))}
                 </button>
               </div>
             ` : ""}
@@ -450,6 +454,8 @@ async function loadDetail() {
         </div>
       </div>
     `;
+
+    if (window.applyI18n) window.applyI18n();
 
     setupTouchAndAutoSlide();
 
@@ -576,6 +582,10 @@ async function loadDetail() {
 }
 
 loadDetail();
+
+window.addEventListener("Saffar_lang_changed", () => {
+  loadDetail();
+});
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 
 <section class="account-hero" style="padding-bottom:0;">
   <div class="container">
-    <span class="eyebrow">Your account</span>
+    <span class="eyebrow" data-i18n="acc_eyebrow">Your account</span>
     <h1 id="greeting">Welcome</h1>
   </div>
 </section>
@@ -29,42 +29,42 @@
       </div>
       <div class="account-fields">
         <div class="account-field">
-          <div class="label">Full name</div>
+          <div class="label" data-i18n="acc_fullname">Full name</div>
           <div class="value" id="fieldName">—</div>
         </div>
         <div class="account-field">
-          <div class="label">Email</div>
+          <div class="label" data-i18n="acc_email">Email</div>
           <div class="value" id="fieldEmail">—</div>
         </div>
         <div class="account-field">
-          <div class="label">Akkaunt turi (Role)</div>
+          <div class="label" data-i18n="acc_role_label">Akkaunt turi (Role)</div>
           <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
             <div class="value" id="fieldRole" style="font-weight:700; color:var(--turquoise-deep);">—</div>
-            <button type="button" id="btnToggleRole" class="btn btn-ghost" style="padding:4px 10px; font-size:12px; border-radius:8px;" title="Akkaunt turini almashtirish">
+            <button type="button" id="btnToggleRole" class="btn btn-ghost" style="padding:4px 10px; font-size:12px; border-radius:8px;" title="Akkaunt turini almashtirish" data-i18n="acc_role_toggle">
               🔄 Rolni o'zgartirish (Mezbon ↔ Turist)
             </button>
           </div>
         </div>
         <div class="account-field">
-          <div class="label">Member since</div>
+          <div class="label" data-i18n="acc_member_since">Member since</div>
           <div class="value" id="fieldSince">—</div>
         </div>
         <div class="account-field">
-          <div class="label">Account ID</div>
+          <div class="label" data-i18n="acc_account_id">Account ID</div>
           <div class="value" id="fieldId" style="font-family:var(--font-mono);font-weight:600;font-size:13.5px;">—</div>
         </div>
       </div>
-      <button class="btn btn-ghost" id="signOutBtn">Sign out</button>
-      <button type="button" class="btn" id="deleteAccountBtn" style="margin-top:10px; background:rgba(193,101,47,0.12); color:var(--clay); border:1px solid rgba(193,101,47,0.3); width:100%; border-radius:12px; padding:10px 16px; font-weight:700; cursor:pointer;">🗑 Akkauntni o'chirish (Delete account)</button>
+      <button class="btn btn-ghost" id="signOutBtn" data-i18n="acc_signout">Sign out</button>
+      <button type="button" class="btn" id="deleteAccountBtn" style="margin-top:10px; background:rgba(193,101,47,0.12); color:var(--clay); border:1px solid rgba(193,101,47,0.3); width:100%; border-radius:12px; padding:10px 16px; font-weight:700; cursor:pointer;" data-i18n="acc_delete">🗑 Akkauntni o'chirish (Delete account)</button>
     </div>
 
     <!-- TEZKOR XIZMATLAR VA BOSHQARUV (Yangi e'lon, Sevimlilar, Til tanlash) -->
     <div class="account-quick-card" style="margin-top:28px; background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:24px; box-shadow:var(--shadow-card);">
       <div style="margin-bottom:18px;">
         <h3 style="font-family:var(--font-display); font-size:20px; color:var(--indigo); margin-bottom:4px; display:flex; align-items:center; gap:8px;">
-          <span>⚡</span> Qulayliklar va Tezkor Amallar
+          <span>⚡</span> <span data-i18n="acc_quick_title">Qulayliklar va Tezkor Amallar</span>
         </h3>
-        <p style="color:rgba(28,26,23,0.7); font-size:13.5px; margin:0;">E'lon joylash, saqlangan sevimlilarni ko'rish va til sozlamalarini boshqaring.</p>
+        <p style="color:rgba(28,26,23,0.7); font-size:13.5px; margin:0;" data-i18n="acc_quick_sub">E'lon joylash, saqlangan sevimlilarni ko'rish va til sozlamalarini boshqaring.</p>
       </div>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
@@ -72,8 +72,8 @@
         <a href="#" class="trigger-add-listing" onclick="if(window.openAddListingModal){window.openAddListingModal();}else{const b=document.getElementById('openAddListingBtn');if(b)b.click();}return false;" style="display:flex; align-items:center; gap:14px; padding:16px 18px; background:var(--turquoise-deep); color:#fff; border-radius:14px; text-decoration:none; font-weight:700; box-shadow:0 3px 10px rgba(0,0,0,0.12); transition:transform 0.15s ease;">
           <span style="font-size:24px; background:rgba(255,255,255,0.22); width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">➕</span>
           <div>
-            <div style="font-size:15.5px; line-height:1.2;">Yangi e'lon joylash</div>
-            <div style="font-size:12px; opacity:0.88; font-weight:400; margin-top:3px;">Uy, joy, taom yoki buyum</div>
+            <div style="font-size:15.5px; line-height:1.2;" data-i18n="acc_quick_add">Yangi e'lon joylash</div>
+            <div style="font-size:12px; opacity:0.88; font-weight:400; margin-top:3px;" data-i18n="acc_quick_add_sub">Uy, joy, taom yoki buyum</div>
           </div>
         </a>
 
@@ -81,15 +81,15 @@
         <a href="saved.html" style="display:flex; align-items:center; gap:14px; padding:16px 18px; background:rgba(217,83,79,0.08); border:1px solid rgba(217,83,79,0.25); color:var(--ink); border-radius:14px; text-decoration:none; font-weight:700; transition:transform 0.15s ease;">
           <span style="font-size:24px; background:rgba(217,83,79,0.14); width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">❤️</span>
           <div>
-            <div style="font-size:15.5px; color:#d9534f; line-height:1.2;">Sevimlilar ro'yxati</div>
-            <div style="font-size:12px; opacity:0.75; font-weight:400; margin-top:3px;">Saqlab qo'yilgan joylar</div>
+            <div style="font-size:15.5px; color:#d9534f; line-height:1.2;" data-i18n="acc_quick_saved">Sevimlilar ro'yxati</div>
+            <div style="font-size:12px; opacity:0.75; font-weight:400; margin-top:3px;" data-i18n="acc_quick_saved_sub">Saqlab qo'yilgan joylar</div>
           </div>
         </a>
 
         <!-- 3: Language Selector -->
         <div style="display:flex; flex-direction:column; justify-content:center; gap:8px; padding:14px 18px; background:var(--sand); border:1px solid var(--line); border-radius:14px;">
           <div style="font-size:13px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:6px;">
-            <span>🌐</span> Tilni tanlash / Language
+            <span>🌐</span> <span data-i18n="acc_quick_lang">Tilni tanlash / Language</span>
           </div>
           <div style="display:flex; gap:6px;">
             <button type="button" class="lang-option btn btn-ghost" data-lang="uz" style="flex:1; padding:7px 4px; font-size:12px; border-radius:8px; font-weight:700;">🇺🇿 UZ</button>
@@ -104,10 +104,10 @@
     <div id="myListingsSection" style="margin-top:36px; background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:28px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
         <div>
-          <h2 style="font-family:var(--font-display); font-size:24px; margin-bottom:4px;">📋 Mening joylagan e'lonlarim</h2>
-          <p style="color:rgba(28,26,23,0.7); font-size:14px;">Ushbu akkauntingiz orqali e'lon qilingan barcha joylar ro'yxati.</p>
+          <h2 style="font-family:var(--font-display); font-size:24px; margin-bottom:4px;" data-i18n="acc_listings_title">📋 Mening joylagan e'lonlarim</h2>
+          <p style="color:rgba(28,26,23,0.7); font-size:14px;" data-i18n="acc_listings_sub">Ushbu akkauntingiz orqali e'lon qilingan barcha joylar ro'yxati.</p>
         </div>
-        <button type="button" class="btn btn-primary" onclick="const b=document.getElementById('openAddListingBtn'); if(b)b.click();" style="padding:8px 18px; font-size:13.5px;">
+        <button type="button" class="btn btn-primary" onclick="const b=document.getElementById('openAddListingBtn'); if(b)b.click();" style="padding:8px 18px; font-size:13.5px;" data-i18n="acc_btn_add">
           + Yangi e'lon qo'shish
         </button>
       </div>
@@ -121,14 +121,14 @@
     <div id="bioSection" style="margin-top:32px; background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:24px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
-          <h3 style="font-family:var(--font-display); font-size:20px; color:var(--indigo); margin-bottom:4px;">✍️ Men haqimda (Bio)</h3>
-          <p style="color:rgba(28,26,23,0.7); font-size:13.5px;">Ushbu ma'lumot saytdagi ochiq profilingizda boshqa foydalanuvchilarga ko'rinadi.</p>
+          <h3 style="font-family:var(--font-display); font-size:20px; color:var(--indigo); margin-bottom:4px;" data-i18n="acc_bio_title">✍️ Men haqimda (Bio)</h3>
+          <p style="color:rgba(28,26,23,0.7); font-size:13.5px;" data-i18n="acc_bio_sub">Ushbu ma'lumot saytdagi ochiq profilingizda boshqa foydalanuvchilarga ko'rinadi.</p>
         </div>
       </div>
-      <textarea id="userBioText" rows="3" placeholder="O'zingiz haqingizda qisqacha ma'lumot yozing (masalan: Samarqandlik gidlardan biriman, sayohatlarni va milliy oshxonani yaxshi ko'raman)..." style="width:100%; border-radius:12px; border:1px solid var(--line); padding:12px 14px; font-family:inherit; font-size:14px; line-height:1.5; box-sizing:border-box; resize:vertical;"></textarea>
+      <textarea id="userBioText" rows="3" data-i18n-placeholder="acc_bio_ph" placeholder="O'zingiz haqingizda qisqacha ma'lumot yozing (masalan: Samarqandlik gidlardan biriman, sayohatlarni va milliy oshxonani yaxshi ko'raman)..." style="width:100%; border-radius:12px; border:1px solid var(--line); padding:12px 14px; font-family:inherit; font-size:14px; line-height:1.5; box-sizing:border-box; resize:vertical;"></textarea>
       <div style="display:flex; justify-content:flex-end; margin-top:12px; gap:10px; align-items:center;">
         <span id="bioSaveStatus" style="font-size:13px; font-weight:700; color:#2e7d32; display:none;"></span>
-        <button type="button" class="btn btn-primary" id="btnSaveBio" style="padding:8px 20px; font-size:13.5px;">
+        <button type="button" class="btn btn-primary" id="btnSaveBio" style="padding:8px 20px; font-size:13.5px;" data-i18n="acc_bio_save">
           💾 Bio'ni saqlash
         </button>
       </div>
@@ -157,7 +157,9 @@ function escapeHtml(str) {
 }
 
 function paint(user) {
-  document.getElementById("greeting").textContent = `Welcome, ${user.name.split(" ")[0]}`;
+  const t = window.Saffar_t || ((k) => k);
+  const firstName = (user.name || "").split(" ")[0] || "";
+  document.getElementById("greeting").textContent = `${t("acc_welcome")}, ${firstName}`;
   
   const avatarEl = document.getElementById("avatar");
   if (user.avatarUrl) {
@@ -170,15 +172,15 @@ function paint(user) {
   document.getElementById("fieldEmail").textContent = user.email;
   document.getElementById("fieldId").textContent = user.id;
 
-  const isAdmin = user.role === "admin" || user.email.toLowerCase() === "abdulquddusxoshimov777@gmail.com";
+  const isAdmin = user.role === "admin" || (user.email || "").toLowerCase() === "abdulquddusxoshimov777@gmail.com";
   const isHost = user.role === "host";
   
   if (isAdmin) {
-    document.getElementById("fieldRole").textContent = "👑 Bosh Administrator (Admin)";
+    document.getElementById("fieldRole").textContent = t("acc_role_admin");
   } else if (isHost) {
-    document.getElementById("fieldRole").textContent = "🏠 Joy beruvchi / Mezbon (Host)";
+    document.getElementById("fieldRole").textContent = t("acc_role_host");
   } else {
-    document.getElementById("fieldRole").textContent = "✈️ Sayohatchi / Turist (Tourist)";
+    document.getElementById("fieldRole").textContent = t("acc_role_tourist");
   }
 
   document.getElementById("fieldSince").textContent = user.createdAt

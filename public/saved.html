@@ -57,9 +57,9 @@
   <div class="container">
     <div class="section-head" style="margin-bottom:24px;">
       <div>
-        <span class="eyebrow">Sevimlilar to'plami</span>
-        <h2>Saqlangan uylar, taomlar va joylar</h2>
-        <p style="margin-top:6px; color:rgba(28,26,23,0.7);">Siz yurakcha tugmasi orqali belgilagan barcha sevimli e'lonlaringiz shu yerda saqlanadi.</p>
+        <span class="eyebrow" data-i18n="saved_eyebrow">Sevimlilar to'plami</span>
+        <h2 data-i18n="saved_title">Saqlangan uylar, taomlar va joylar</h2>
+        <p style="margin-top:6px; color:rgba(28,26,23,0.7);" data-i18n="saved_sub">Siz yurakcha tugmasi orqali belgilagan barcha sevimli e'lonlaringiz shu yerda saqlanadi.</p>
       </div>
     </div>
 
@@ -88,20 +88,28 @@ function renderSavedItems() {
   const favs = window.SaffarFav ? window.SaffarFav.getFavorites() : [];
 
   if (!favs.length) {
+    const emptyTitle = window.Saffar_t ? window.Saffar_t("saved_empty_title") : "Hozircha saqlanganlar yo'q";
+    const emptySub = window.Saffar_t ? window.Saffar_t("saved_empty_sub") : "Uylar, taomlar yoki joylar sahifasidagi yurakcha (♡) tugmasini bosing!";
+    const btnStays = window.Saffar_t ? window.Saffar_t("saved_btn_stays") : "Uylarga o'tish";
+    const btnFoods = window.Saffar_t ? window.Saffar_t("saved_btn_foods") : "Taomlarga o'tish";
+    const btnCrafts = window.Saffar_t ? window.Saffar_t("saved_btn_crafts") : "Buyumlarga o'tish";
+
     container.innerHTML = `
       <div class="empty-stays-card" style="grid-column: 1 / -1; padding:70px 20px; text-align:center;">
         <div class="empty-icon" style="font-size:54px; margin-bottom:12px;" aria-hidden="true">❤️</div>
-        <h2 style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--ink); margin-bottom:12px;">Hozircha saqlanganlar yo'q</h2>
-        <p style="font-size:16px; color:rgba(28,26,23,0.7); max-width:540px; margin:0 auto 28px; line-height:1.5;">Uylar, taomlar yoki joylar sahifasidagi yurakcha (♡) tugmasini bosing!</p>
+        <h2 style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--ink); margin-bottom:12px;">${escapeHtml(emptyTitle)}</h2>
+        <p style="font-size:16px; color:rgba(28,26,23,0.7); max-width:540px; margin:0 auto 28px; line-height:1.5;">${escapeHtml(emptySub)}</p>
         <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-          <a href="stays.html" class="saved-pill-btn">Uylarga o'tish</a>
-          <a href="foods.html" class="saved-pill-btn">Taomlarga o'tish</a>
-          <a href="crafts.html" class="saved-pill-btn">Buyumlarga o'tish</a>
+          <a href="stays.html" class="saved-pill-btn">${escapeHtml(btnStays)}</a>
+          <a href="foods.html" class="saved-pill-btn">${escapeHtml(btnFoods)}</a>
+          <a href="crafts.html" class="saved-pill-btn">${escapeHtml(btnCrafts)}</a>
         </div>
       </div>
     `;
     return;
   }
+
+  const btnDetailsText = window.Saffar_t ? window.Saffar_t("btn_details") : "🔍 Batafsil";
 
   container.innerHTML = favs.map(item => {
     const detailUrl = `detail.html?type=${item.type}&id=${item.id}`;
@@ -116,13 +124,17 @@ function renderSavedItems() {
           <h4 style="font-size:17px; margin:6px 0 10px;">${escapeHtml(item.title)}</h4>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto;">
             ${item.price ? `<strong style="font-size:16px;">${escapeHtml(String(item.price))}</strong>` : '<span></span>'}
-            <a class="btn-detail" href="${detailUrl}">🔍 Batafsil</a>
+            <a class="btn-detail" href="${detailUrl}">${escapeHtml(btnDetailsText)}</a>
           </div>
         </div>
       </div>
     `;
   }).join("");
 }
+
+window.addEventListener("Saffar_lang_changed", () => {
+  renderSavedItems();
+});
 
 window.removeFav = function(type, id) {
   if (window.SaffarFav) {
